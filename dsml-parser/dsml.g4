@@ -13,7 +13,7 @@ spec_entry
     ;
 
 namespace
-    : IDENTIFIER ( '/' IDENTIFIER )* '{' spec_entry* '}'
+    : 'namespace' IDENTIFIER ( '/' IDENTIFIER )* '{' spec_entry* '}'
     ;
 
 spec_decl
