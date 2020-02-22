@@ -5,3 +5,5 @@
 *.ipr
 *.iws
 .project
+.classpath
+.settings
