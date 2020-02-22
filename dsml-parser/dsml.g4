@@ -119,3 +119,11 @@ fragment EXP
 WS
     : [ \t\n\r] + -> skip
     ;
+
+BLOCK_COMMENT
+    :   '/*' .*? '*/' -> skip
+    ;
+
+LINE_COMMENT
+    :   '//' ~[\r\n]* -> skip
+    ;
