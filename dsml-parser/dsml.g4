@@ -27,8 +27,7 @@ specifier
     ;
 
 spec_array
-    : '[' specifier ( ',' specifier? )* ']'
-    | '[' ']'
+    : '[' ( specifier ( ',' specifier? )* )? ']'
     ;
 
 spec_obj
@@ -46,8 +45,7 @@ meta_pair
    ;
 
 meta_array
-   : '[' meta_value (',' meta_value)* ']'
-   | '[' ']'
+   : '[' ( meta_value (',' meta_value? )* )? ']'
    ;
 
 meta_value
