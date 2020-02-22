@@ -23,12 +23,12 @@ spec_decl
 specifier
     : GLOBAL_ID
     | SCOPED_ID
-    | spec_array
+    | spec_list
     | spec_obj
     ;
 
-spec_array
-    : '[' ( specifier ( ',' specifier? )* )? ']'
+spec_list
+    : '[' ( specifier ( ',' specifier )* )? ']'
     ;
 
 spec_obj
@@ -45,7 +45,7 @@ meta_pair
    : SCOPED_ID '=' meta_value
    ;
 
-meta_array
+meta_list
    : '[' ( meta_value (',' meta_value? )* )? ']'
    ;
 
@@ -54,7 +54,7 @@ meta_value
    | NUMBER
    | BOOLEAN
    | meta_obj
-   | meta_array
+   | meta_list
    ;
 
 
