@@ -2,59 +2,59 @@ grammar dsml;
 
 /* PARSER RULES */
 
-dsml_spec
-    : spec_entry+
+dsmlSpec
+    : specEntry+
     ;
 
-spec_entry
+specEntry
     : namespace
-    | meta_pair
-    | spec_decl
+    | metaPair
+    | specDecl
     ;
 
 namespace
-    : 'namespace' SCOPED_ID '{' spec_entry* '}'
+    : 'namespace' SCOPED_ID '{' specEntry* '}'
     ;
 
-spec_decl
+specDecl
     : SPEC_TYPE SCOPED_ID ':' specifier
     ;
 
 specifier
     : GLOBAL_ID
     | SCOPED_ID
-    | spec_list
-    | spec_obj
+    | specList
+    | specObj
     ;
 
-spec_list
+specList
     : '[' ( specifier ( ',' specifier )* )? ']'
     ;
 
-spec_obj
-    : '{' spec_entry* '}'
+specObj
+    : '{' specEntry* '}'
     ;
 
 // metadata rules are adapted from JSON
 
-meta_obj
-   : '{' meta_pair* '}'
+metaObj
+   : '{' metaPair* '}'
    ;
 
-meta_pair
-   : SCOPED_ID '=' meta_value
+metaPair
+   : SCOPED_ID '=' metaValue
    ;
 
-meta_list
-   : '[' ( meta_value (',' meta_value? )* )? ']'
+metaList
+   : '[' ( metaValue (',' metaValue? )* )? ']'
    ;
 
-meta_value
+metaValue
    : STRING
    | NUMBER
    | BOOLEAN
-   | meta_obj
-   | meta_list
+   | metaObj
+   | metaList
    ;
 
 
