@@ -1,4 +1,4 @@
-grammar dsml;
+grammar DSML;
 
 /* PARSER RULES */
 
