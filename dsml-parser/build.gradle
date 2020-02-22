@@ -1,0 +1,14 @@
+plugins {
+    id 'antlr'
+}
+
+group 'dsml'
+version '0.1'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    antlr 'org.antlr:antlr4:4.8-1'
+}
