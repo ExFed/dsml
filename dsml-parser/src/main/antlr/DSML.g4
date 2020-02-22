@@ -1,5 +1,9 @@
 grammar DSML;
 
+@header {
+package dsml.lang;
+}
+
 /* PARSER RULES */
 
 dsmlSpec
