@@ -13,15 +13,16 @@ spec_entry
     ;
 
 namespace
-    : 'namespace' IDENTIFIER ( '/' IDENTIFIER )* '{' spec_entry* '}'
+    : 'namespace' SCOPED_ID '{' spec_entry* '}'
     ;
 
 spec_decl
-    : SPEC_TYPE IDENTIFIER ':' specifier
+    : SPEC_TYPE SCOPED_ID ':' specifier
     ;
 
 specifier
-    : IDENTIFIER
+    : GLOBAL_ID
+    | SCOPED_ID
     | spec_array
     | spec_obj
     ;
@@ -34,14 +35,14 @@ spec_obj
     : '{' spec_entry* '}'
     ;
 
-// metadata rules (adapted from JSON)
+// metadata rules are adapted from JSON
 
 meta_obj
    : '{' meta_pair* '}'
    ;
 
 meta_pair
-   : IDENTIFIER '=' meta_value
+   : SCOPED_ID '=' meta_value
    ;
 
 meta_array
@@ -60,10 +61,19 @@ meta_value
 /* LEXER RULES */
 
 SPEC_TYPE
-    : IDENTIFIER
+    : GLOBAL_ID
+    | SCOPED_ID
     ;
 
-IDENTIFIER
+GLOBAL_ID
+    : '/' SCOPED_ID
+    ;
+
+SCOPED_ID
+    : NAME ( '/' NAME )*
+    ;
+
+fragment NAME
     : [_a-zA-Z] [_a-zA-Z0-9]*
     ;
 
