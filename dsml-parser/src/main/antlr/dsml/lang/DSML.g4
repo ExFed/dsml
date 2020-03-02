@@ -17,16 +17,16 @@ specEntry
     ;
 
 namespace
-    : 'namespace' SCOPED_ID '{' specEntry* '}'
+    : 'namespace' ID '{' specEntry* '}'
     ;
 
 specDecl
-    : SPEC_TYPE SCOPED_ID ':' specifier
+    : ID ID ':' specifier
     ;
 
 specifier
-    : GLOBAL_ID
-    | SCOPED_ID
+    : FQID
+    | ID
     | specList
     | specObj
     ;
@@ -46,7 +46,7 @@ metaObj
    ;
 
 metaPair
-   : SCOPED_ID '=' metaValue
+   : ID '=' metaValue
    ;
 
 metaList
@@ -64,20 +64,11 @@ metaValue
 
 /* LEXER RULES */
 
-SPEC_TYPE
-    : GLOBAL_ID
-    | SCOPED_ID
+FQID
+    : ( '/' ID )+
     ;
 
-GLOBAL_ID
-    : '/' SCOPED_ID
-    ;
-
-SCOPED_ID
-    : NAME ( '/' NAME )*
-    ;
-
-fragment NAME
+ID
     : [_a-zA-Z] [_a-zA-Z0-9]*
     ;
 
