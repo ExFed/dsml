@@ -10,7 +10,7 @@ import java.util.StringJoiner;
 public class TestVisitor extends DSMLBaseVisitor<String> {
 
     @Override
-    public String visitDsmlSpec(DSMLParser.DsmlSpecContext ctx) {
+    public String visitDsmlFile(DSMLParser.DsmlFileContext ctx) {
         StringJoiner sj = new StringJoiner("\n");
         for (DSMLParser.SpecEntryContext entryContext : ctx.specEntry()) {
             sj.add(entryContext.accept(this));

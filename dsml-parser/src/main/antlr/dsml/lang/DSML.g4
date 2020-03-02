@@ -6,13 +6,13 @@ package dsml.lang;
 
 /* PARSER RULES */
 
-dsmlSpec
-    : specEntry+
+dsmlFile
+    : specEntry* EOF
     ;
 
 specEntry
     : namespace
-    | metaPair
+    | propPair
     | specDecl
     ;
 
@@ -39,26 +39,28 @@ specObj
     : '{' specEntry* '}'
     ;
 
-// metadata rules are adapted from JSON
+// property rules are adapted from JSON
 
-metaObj
-   : '{' metaPair* '}'
+propTree
+   : '{' propPair* '}'
    ;
 
-metaPair
-   : ID '=' metaValue
+propPair
+   : ID '=' propValue
    ;
 
-metaList
-   : '[' ( metaValue (',' metaValue? )* )? ']'
+propList
+   : '[' ( propValue (',' propValue )* )? ']'
    ;
 
-metaValue
-   : STRING
+propValue
+   : FQID
+   | ID
+   | STRING
    | NUMBER
    | BOOLEAN
-   | metaObj
-   | metaList
+   | propTree
+   | propList
    ;
 
 

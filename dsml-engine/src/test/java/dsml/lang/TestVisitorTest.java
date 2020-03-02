@@ -23,7 +23,7 @@ class TestVisitorTest {
         DSMLParser dsmlParser = new DSMLParser(tokens);
 
         TestVisitor visitor = new TestVisitor();
-        String actual = visitor.visit(dsmlParser.dsmlSpec());
+        String actual = visitor.visit(dsmlParser.dsmlFile());
         assertEquals(expect, actual);
     }
 }
