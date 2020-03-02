@@ -1,0 +1,6 @@
+plugins {
+    id 'idea'
+}
+
+group 'dsml'
+version '0.1'

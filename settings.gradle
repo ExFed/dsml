@@ -1,0 +1,4 @@
+rootProject.name = 'dsml'
+
+include 'dsml-parser'
+include 'dsml-engine'
