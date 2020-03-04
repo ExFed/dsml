@@ -17,7 +17,7 @@ expression
     ;
 
 namespace
-    : 'namespace' ID '{' expression* '}'
+    : 'namespace' (QID | ID) '{' expression* '}'
     ;
 
 specification
@@ -26,6 +26,7 @@ specification
 
 specifier
     : FQID
+    | QID
     | ID
     | specList
     | specObj
@@ -41,7 +42,7 @@ specObj
 
 // property rules are adapted from JSON
 
-propTree
+propObj
    : '{' property* '}'
    ;
 
@@ -55,11 +56,12 @@ propList
 
 propValue
    : FQID
+   | QID
    | ID
    | STRING
    | NUMBER
    | BOOLEAN
-   | propTree
+   | propObj
    | propList
    ;
 
@@ -68,6 +70,10 @@ propValue
 
 FQID
     : ( '/' ID )+
+    ;
+
+QID
+    : ID FQID
     ;
 
 ID
@@ -111,8 +117,6 @@ NUMBER
 fragment INT
     : '0' | [1-9] [0-9]*
     ;
-
-// no leading zeros
 
 fragment EXP
     : [Ee] [-+]? INT
