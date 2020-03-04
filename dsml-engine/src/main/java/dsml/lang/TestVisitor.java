@@ -1,6 +1,6 @@
 package dsml.lang;
 
-import dsml.lang.DSMLParser.SpecDeclContext;
+import dsml.lang.DSMLParser.SpecificationContext;
 import dsml.lang.DSMLParser.SpecifierContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -10,16 +10,16 @@ import java.util.StringJoiner;
 public class TestVisitor extends DSMLBaseVisitor<String> {
 
     @Override
-    public String visitDsmlFile(DSMLParser.DsmlFileContext ctx) {
+    public String visitFile(DSMLParser.FileContext ctx) {
         StringJoiner sj = new StringJoiner("\n");
-        for (DSMLParser.SpecEntryContext entryContext : ctx.specEntry()) {
+        for (DSMLParser.ExpressionContext entryContext : ctx.expression()) {
             sj.add(entryContext.accept(this));
         }
         return sj.toString();
     }
 
     @Override
-    public String visitSpecDecl(SpecDeclContext ctx) {
+    public String visitSpecification(SpecificationContext ctx) {
         List<TerminalNode> ids = ctx.ID();
         TerminalNode type = ids.get(0);
         TerminalNode name = ids.get(1);

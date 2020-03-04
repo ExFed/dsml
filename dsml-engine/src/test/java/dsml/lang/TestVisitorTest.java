@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TestVisitorTest {
 
     @Test
-    void visitSpecDecl() {
+    void visitSpecification() {
         String expect = "" +
                 "biz --[ foobar ]-> baz\n" +
                 "quz --[ xyzzy ]-> qaz";
@@ -23,7 +23,7 @@ class TestVisitorTest {
         DSMLParser dsmlParser = new DSMLParser(tokens);
 
         TestVisitor visitor = new TestVisitor();
-        String actual = visitor.visit(dsmlParser.dsmlFile());
+        String actual = visitor.visit(dsmlParser.file());
         assertEquals(expect, actual);
     }
 }

@@ -6,21 +6,21 @@ package dsml.lang;
 
 /* PARSER RULES */
 
-dsmlFile
-    : specEntry* EOF
+file
+    : expression* EOF
     ;
 
-specEntry
+expression
     : namespace
-    | propPair
-    | specDecl
+    | property
+    | specification
     ;
 
 namespace
-    : 'namespace' ID '{' specEntry* '}'
+    : 'namespace' ID '{' expression* '}'
     ;
 
-specDecl
+specification
     : ID ID ':' specifier
     ;
 
@@ -36,16 +36,16 @@ specList
     ;
 
 specObj
-    : '{' specEntry* '}'
+    : '{' expression* '}'
     ;
 
 // property rules are adapted from JSON
 
 propTree
-   : '{' propPair* '}'
+   : '{' property* '}'
    ;
 
-propPair
+property
    : ID '=' propValue
    ;
 
@@ -103,7 +103,6 @@ fragment SAFECODEPOINT
     : ~ ["\\\u0000-\u001F]
     ;
 
-
 NUMBER
     : '-'? INT ('.' [0-9] +)? EXP?
     ;
@@ -116,10 +115,8 @@ fragment INT
 // no leading zeros
 
 fragment EXP
-    : [Ee] [+\-]? INT
+    : [Ee] [-+]? INT
     ;
-
-// \- since - means "range" inside [...]
 
 WS
     : [ \t\n\r] + -> skip
