@@ -11,13 +11,8 @@ file
     ;
 
 expression
-    : namespace
-    | property
+    : property
     | specification
-    ;
-
-namespace
-    : 'namespace' (QID | ID) '{' expression* '}'
     ;
 
 specification
@@ -113,7 +108,6 @@ NUMBER
     : '-'? INT ('.' [0-9] +)? EXP?
     ;
 
-
 fragment INT
     : '0' | [1-9] [0-9]*
     ;
@@ -122,14 +116,7 @@ fragment EXP
     : [Ee] [-+]? INT
     ;
 
-WS
-    : [ \t\n\r] + -> skip
-    ;
-
-BLOCK_COMMENT
-    :   '/*' .*? '*/' -> skip
-    ;
-
-LINE_COMMENT
-    :   '//' ~[\r\n]* -> skip
-    ;
+WS              : [ \t]+        -> channel(HIDDEN);
+ENDL            : [\r\n]+       -> channel(HIDDEN);
+BLOCK_COMMENT   : '/*' .*? '*/' -> channel(HIDDEN);
+LINE_COMMENT    : '//' ~[\r\n]* -> channel(HIDDEN);
