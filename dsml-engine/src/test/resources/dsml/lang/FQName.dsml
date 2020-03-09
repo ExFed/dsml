@@ -1,0 +1,16 @@
+description = """
+    Defines a fully-qualified name or identifier, and any requisite types.
+"""
+
+type string: {
+    description = "A string of characters. Defined by the platform."
+
+    definedAs = primitive
+}
+
+struct FQName: {
+    description = "A fully-qualified name/identifier."
+
+    field name: string
+    field parent: FQName
+}

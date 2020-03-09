@@ -1,0 +1,11 @@
+struct Triple: {
+    description = "A tuple with three elements."
+
+    generic T1: primitive
+    generic T2: primitive
+    generic T3: primitive
+
+    field first: T1
+    field second: T2
+    field third: T3
+}
