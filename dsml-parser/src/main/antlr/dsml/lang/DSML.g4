@@ -21,7 +21,6 @@ specification
 
 specifier
     : FQID
-    | QID
     | ID
     | specList
     | specObj
@@ -51,7 +50,6 @@ propList
 
 propValue
    : FQID
-   | QID
    | ID
    | STRING
    | NUMBER
@@ -64,11 +62,7 @@ propValue
 /* LEXER RULES */
 
 FQID
-    : ( '/' ID )+
-    ;
-
-QID
-    : ID FQID
+    : ID ( '.' ID )+
     ;
 
 ID
@@ -84,21 +78,17 @@ STRING
     : '"' (ESC | SAFECODEPOINT)* '"'
     ;
 
-
 fragment ESC
     : '\\' (["\\/bfnrt] | UNICODE)
     ;
-
 
 fragment UNICODE
     : 'u' HEX HEX HEX HEX
     ;
 
-
 fragment HEX
     : [0-9a-fA-F]
     ;
-
 
 fragment SAFECODEPOINT
     : ~ ["\\\u0000-\u001F]
