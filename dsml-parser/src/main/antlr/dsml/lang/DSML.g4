@@ -52,6 +52,7 @@ propValue
    : FQID
    | ID
    | STRING
+   | MLSTRING
    | NUMBER
    | BOOLEAN
    | propObj
@@ -76,6 +77,10 @@ BOOLEAN
 
 STRING
     : '"' (ESC | SAFECODEPOINT)* '"'
+    ;
+
+MLSTRING
+    : '"""' (ESC | SAFECODEPOINT | ENDL)* '"""'
     ;
 
 fragment ESC
