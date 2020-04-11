@@ -1,4 +1,10 @@
 rootProject.name = 'dsml'
 
-include 'dsml-parser'
-include 'dsml-engine'
+// declare subprojects
+include 'parser'
+include 'engine'
+
+// define subproject directories
+rootProject.children.each { project ->
+    project.projectDir = file("spec/$project.name")
+}
